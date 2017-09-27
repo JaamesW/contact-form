@@ -13,14 +13,75 @@
   margin: 0 auto;
   background-color: white;
   box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
-  margin-top: 40px;
-  margin-bottom: 40px;
+}
+@media screen and (min-width: 737px) {
+  .modal {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
 }
 
 .modal-footer {
   margin-top: 50px;
   margin-bottom: 20px;
-  text-align: right;
+  text-align: center;
+}
+@media screen and (min-width: 737px) {
+  .modal-footer {
+    text-align: right;
+  }
+}
+
+.button-action-wrap-added {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-animation-name: slide-down;
+          animation-name: slide-down;
+  -webkit-animation-duration: 300ms;
+          animation-duration: 300ms;
+  -webkit-animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+          animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.button-action-wrap-added:first-of-type {
+  margin-top: 0px;
+}
+.button-action-wrap-added .f-input {
+  width: 100%;
+}
+
+.button-action-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+.button-action-wrap .f-input {
+  width: 100%;
+}
+
+.form__row.image {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.image-preview {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: #f4f4f4;
 }
 
 .form__row {
@@ -63,6 +124,7 @@
 }
 .form__row .f-input.small {
   max-width: 200px;
+  min-width: 75px;
   border-left: none;
   border-radius: 0 2px 2px 0;
 }
@@ -93,45 +155,6 @@
 .form__row .f-label.required::after {
   content: '*';
   color: #FA8A8A;
-}
-
-.button-action-wrap-added {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
-  -webkit-animation-name: slide-down;
-          animation-name: slide-down;
-  -webkit-animation-duration: 300ms;
-          animation-duration: 300ms;
-  -webkit-animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-          animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-}
-.button-action-wrap-added:first-of-type {
-  margin-top: 0px;
-}
-.button-action-wrap-added .f-input {
-  width: 100%;
-}
-
-.button-action-wrap {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
-}
-.button-action-wrap .f-input {
-  width: 100%;
 }
 
 .btn {
@@ -245,7 +268,7 @@
       -ms-flex-align: center;
           align-items: center;
   font-size: 11px;
-  border: 1px solid #cfd8dc;
+  border: 2px solid transparent;
   color: #cfd8dc;
   margin-left: 10px;
   text-transform: uppercase;
@@ -256,41 +279,26 @@
   cursor: pointer;
   letter-spacing: .3px;
 }
+.primary-phone:hover,
+.primary-email:hover {
+  color: #b0bec5;
+}
 .primary-phone.phone-active, .primary-phone.email-active,
 .primary-email.phone-active,
 .primary-email.email-active {
-  background-color: #FFC13F;
-  border: 1px solid #FFC13F;
+  background: #b0bec5;
   color: white;
 }
 
-.form__row.image {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.image-preview {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  background-color: #f4f4f4;
-}
-
-svg {
-  -webkit-transition: all 150ms cubic-bezier(0.25, 0, 0.1, 1);
-  transition: all 150ms cubic-bezier(0.25, 0, 0.1, 1);
-}
-
 html {
-  background: #757F9A;
-  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to top, #D7DDE8, #757F9A);
-  /* Chrome 10-25, Safari 5.1-6 */
   background: -webkit-linear-gradient(bottom, #D7DDE8, #757F9A);
   background: linear-gradient(to top, #D7DDE8, #757F9A);
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  font-size: 14px;
+  font-size: 16px;
+}
+@media screen and (min-width: 737px) {
+  html {
+    font-size: 14px;
+  }
 }
 
 .u-h1 {
@@ -304,6 +312,11 @@ html {
 * {
   font-family: 'Open Sans', sans-serif;
   color: #455a64;
+}
+
+svg {
+  -webkit-transition: all 150ms cubic-bezier(0.25, 0, 0.1, 1);
+  transition: all 150ms cubic-bezier(0.25, 0, 0.1, 1);
 }
 
 @-webkit-keyframes slide-down {

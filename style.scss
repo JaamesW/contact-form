@@ -1,34 +1,71 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600');
 
+// variables
 $light-gray: #cfd8dc;
 $gray: #b0bec5;
 $duration: 150ms;
 $easing: cubic-bezier(.25, 0, .1, 1);
+@mixin transition { transition: all $duration $easing; }
 
-@mixin transition {
-  transition: all $duration $easing;
-}
 
+// utilities
 .u-relative { position: relative; }
-
 .band__content { padding: 30px 40px; }
 
+
+// layout
 .modal {
 	max-width: 600px;
 	border-radius: 2px; 
 	margin: 0 auto; 
 	background-color: white;
 	box-shadow: 0 12px 25px rgba(0,0,0,.18);
-	margin-top: 40px; 
-	margin-bottom: 40px; 
+	
+	@media screen and (min-width: 737px) {
+		margin-top: 40px; 
+		margin-bottom: 40px; 
+	}
 }
 
 .modal-footer {
 	margin-top: 50px; 
 	margin-bottom: 20px; 
-	text-align: right; 
+	text-align: center; 
+	
+	@media screen and (min-width: 737px) { text-align: right; }	
 }
 
+.button-action-wrap-added {
+	display: flex;
+	align-items: center; 
+	flex-wrap: nowrap;
+	animation-name: slide-down;
+	animation-duration: 300ms;
+	animation-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
+	animation-fill-mode: forwards;
+	
+	&:first-of-type { margin-top: 0px; }	
+	.f-input { width: 100%; }
+}
+
+.button-action-wrap {
+	display: flex;
+	align-items: center; 
+	flex-wrap: nowrap;	
+	.f-input { width: 100%; }
+}
+
+.form__row.image { align-items: center; }
+
+.image-preview {
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	background-color: #f4f4f4;
+}
+
+
+// inputs
 .form__row {
 	display: flex;
 	flex-direction: column; 
@@ -64,6 +101,7 @@ $easing: cubic-bezier(.25, 0, .1, 1);
 	
 	.f-input.small { 
 		max-width: 200px;
+		min-width: 75px; 
 		border-left: none;
 		border-radius: 0 2px 2px 0; 
 	}
@@ -97,27 +135,8 @@ $easing: cubic-bezier(.25, 0, .1, 1);
 	}
 }
 
-.button-action-wrap-added {
-	display: flex;
-	align-items: center; 
-	flex-wrap: nowrap;
-	animation-name: slide-down;
-	animation-duration: 300ms;
-	animation-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
-	animation-fill-mode: forwards;
-	
-	&:first-of-type { margin-top: 0px; }
-	
-	.f-input { width: 100%; }
-}
 
-.button-action-wrap {
-	display: flex;
-	align-items: center; 
-	flex-wrap: nowrap;	
-	.f-input { width: 100%; }
-}
-
+// buttons
 .btn {
 	display: inline-block;
     height: 42px;
@@ -193,7 +212,6 @@ $easing: cubic-bezier(.25, 0, .1, 1);
 	}
 }
 
-
 .form__row.image {
 	.f-label.browse {
 		font-size: 13px;
@@ -216,7 +234,7 @@ $easing: cubic-bezier(.25, 0, .1, 1);
 	padding: 4px;
 	align-items: center;
 	font-size: 11px; ;
-	border: 1px solid $light-gray;
+	border: 2px solid transparent;
 	color: $light-gray;
 	margin-left: 10px; 
 	text-transform: uppercase;
@@ -226,51 +244,22 @@ $easing: cubic-bezier(.25, 0, .1, 1);
 	cursor: pointer;
 	letter-spacing: .3px;
 	
+	&:hover { color: $gray}
+	
 	&.phone-active,
 	&.email-active {
-		background-color: #FFC13F;
-		border: 1px solid #FFC13F;
+		background: $gray;
 		color: white; 
 	}
 }
 
-.form__row.image {
-	align-items: center; 
-}
-
-.image-preview {
-	width: 150px;
-	height: 150px;
-	border-radius: 50%;
-	background-color: #f4f4f4;
-}
-
-svg { @include transition; }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /// setup stuffs
 html {
-	background: #757F9A;  /* fallback for old browsers */
-	background: -webkit-linear-gradient(to top, #D7DDE8, #757F9A);  /* Chrome 10-25, Safari 5.1-6 */
-	background: linear-gradient(to top, #D7DDE8, #757F9A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-	font-size: 14px; 
+	background: linear-gradient(to top, #D7DDE8, #757F9A); 
+	font-size: 16px;
+	
+	@media screen and (min-width: 737px) { font-size: 14px; }
 }
 
 .u-h1 {
@@ -286,15 +275,15 @@ html {
 	color: #455a64;
 }
 
+svg { @include transition; }
+
 @keyframes slide-down {
 	0% { 
 		margin-top: -30px;
 		opacity: 0; 
 		height: 44px; 
-	}
-	
-	30% { opacity: 0; }
-	
+	}	
+	30% { opacity: 0; }	
 	100% { 
 		margin-top: 10px;
 		opacity: 1; 
@@ -309,12 +298,10 @@ html {
 		border-left: none;
 		width: 200px; 
 	}
-	
 	.f-input:hover { border-left: none; }
 }
 
 .f-select + .f-input { 
 	border-left: none;
-	
 	&:hover { border-left: none; }
 }
